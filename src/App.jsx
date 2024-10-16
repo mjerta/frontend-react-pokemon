@@ -2,24 +2,11 @@ import './App.css'
 
 import pokemonPic from "./assets/pokemon.png"
 import {useEffect, useState} from "react";
+import useFetchPokemon from "./custom-hooks/useFetchPokemon.jsx";
 
 function App() {
-  const [loading,setLoading] = useState(false);
-
-  useEffect(() => {
-    try {
-      setLoading(true)
-
-
-
-    } catch (e) {
-      console.error(e)
-    } finally {
-      setLoading(false)
-    }
-
-  }, []);
-
+  const [offset, setOffset] = useState(0);
+  const { loading, pokemonList, error } = useFetchPokemon(offset);
   return (
     <>
       <main>
