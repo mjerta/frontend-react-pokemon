@@ -3,6 +3,7 @@ import './App.css'
 import pokemonPic from "./assets/pokemon.png"
 import {useEffect, useState} from "react";
 import useFetchPokemon from "./custom-hooks/useFetchPokemon.jsx";
+import PokemonCard from "./components/pokemon-card/PokemonCard.jsx";
 
 function App() {
   const [offset, setOffset] = useState(0);
@@ -11,11 +12,9 @@ function App() {
   function handleButton(e) {
     if (e.target.name === "previous") {
       setOffset((prev) => prev - 20);
-      console.log("previous")
     }
-    if ( e.target.name === "next") {
+    if (e.target.name === "next") {
       setOffset((prev) => prev + 20);
-      console.log("next")
     }
 
   }
@@ -45,6 +44,12 @@ function App() {
           </div>
         </header>
         <section className="pokemon-container">
+          {pokemonList.map(pokemon => (
+              <PokemonCard
+                key={pokemon.name}
+                url={pokemon.url}
+              />
+          ))}
         </section>
       </main>
     </>
